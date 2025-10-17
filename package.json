@@ -5,13 +5,16 @@
   "type": "module",
   "homepage": "https://Jasu-25.github.io/myportfolio",
   "scripts": {
-    "dev": "vite --host 0.0.0.0 --port 3000",
-    "build": "vite build",
-    "preview": "vite preview --host 0.0.0.0 --port 4173",
-    "lint": "eslint --cache -f json --quiet .",
-    "deploy-gh": "npm run build && gh-pages -d dist",
-    "deploy-cf": "bun run build && wrangler deploy"
-  },
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d dist",
+  "dev": "vite --host 0.0.0.0 --port ${PORT:-3000}",
+  "build": "vite build",
+  "lint": "eslint --cache -f json --quiet .",
+  "preview": "bun run build && vite preview --host 0.0.0.0 --port ${PORT:-4173}",
+  "deploy": "bun run build && wrangler deploy",
+  "cf-typegen": "wrangler types"
+}
+,
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
     "@dnd-kit/sortable": "^10.0.0",
